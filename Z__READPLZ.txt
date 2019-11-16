@@ -1,0 +1,10 @@
+General Notes
+
+
+Temporarily commented out all lines relating to bitset
+  Organism.cpp 17
+  Ant.cpp 18-25, 28-39
+  Ant.h 14
+  Anteater.h 13
+
+Same goes for nanoseed
