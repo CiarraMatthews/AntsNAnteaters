@@ -1,31 +1,24 @@
-#ifndef _ANT_CPP
-#define _ANT_CPP
+#ifndef _ANT_H
+#define _ANT_H
 
 #include <iostream>
 #include "Organism.h"
-using namespace std;
+#include "World.h"
 
 class Ant : public Organism {
   private:
-  //variables
   // mutators:
-    Ant *spawn(const int row_ii, const int col_ii);
-  // accessors:
-    //bitset vibeCheck() const;
-    
+    Ant *spawnPolar(const int distance, const int direction);
   public:
-  //constructors
+  // constructors:
     Ant();
-    Ant(int row_ii, int col_ii);
-    /* before moving an anteater check each relevant space with "for loop"
-    Not sure if this belongs here
-    */
-  // mutators:
-    bool move();
-    Ant *reproduce();
-  
-    
-  bool doesAntExist();
+    Ant(const int row_kii, const int col_kii, const int generationLength_kii, World *m_world_prob);
+  // accessor:
+    identity is() const override { return ANT; };
+  // mutator:
+    Ant *checkReproduction() override;
+  // destructor:
+    ~Ant();
 };
 
 #endif
