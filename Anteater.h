@@ -4,27 +4,30 @@
 #include <bits/stdc++.h>
 #include "Organism.h"
 
+class Ant;
+
 class Anteater : public Organism {
   protected:
   // variables:
-    int m_tongueLength_ii = -1;
-    int m_hunger_ii = 0;
-    int m_starvation_ii = -1;
+    int m_tongueLength = -1;
+    int m_hunger = 0;
+    int m_starvation = -1;
   // accessors:
-    std::vector<int> antsInRange(const int distance_kii) const;
+    std::vector<int> antsInRange(const int distance) const;
+    Ant *findNearestAnt() const;
   public:
   // constructors:
     Anteater();
-    Anteater(const int row_kii, const int col_kii, const int generationLength_kii, World *world_prob, const int tongueLength_kii, const int starvation_kii);
+    Anteater(const int row, const int column, const int generationLength, World *world, const int tongueLength, const int starvation);
   // accessors:
-    identity is() const override { return ANTEATER; };
-    virtual int intelligence() const { return 0; };
-    int tongueLength() const { return m_tongueLength_ii; };
-    int hunger() const { return m_hunger_ii; };
-    int starvation() const { return m_starvation_ii; };
+    identity is() const override { return ANTEATER; }
+    virtual int intelligence() const { return 0; }
+    int tongueLength() const { return m_tongueLength; }
+    int hunger() const { return m_hunger; }
+    int starvation() const { return m_starvation; }
   // mutators:
     bool move() override;
-    bool feed(int direction_ii) override;
+    bool feed(int direction) override;
     bool checkHunger() override;
     Anteater *checkReproduction() override;
   // destructor:

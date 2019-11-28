@@ -12,7 +12,7 @@ class Ant : public Organism {
   public:
   // constructors:
     Ant();
-    Ant(const int row_kii, const int col_kii, const int generationLength_kii, World *m_world_prob);
+    Ant(const int row, const int column, const int generationLength, World *m_world);
   // accessor:
     identity is() const override { return ANT; };
   // mutator:

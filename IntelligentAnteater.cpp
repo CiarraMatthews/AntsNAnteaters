@@ -7,36 +7,37 @@ using namespace std;
 
 IntelligentAnteater::IntelligentAnteater() {  };
 
-IntelligentAnteater::IntelligentAnteater(const int row_kii, const int col_kii, const int generationLength_kii, World *world_prob, const int tongueLength_kii, const int starvation_kii) {
-  m_row_ii = row_kii;
-  m_col_ii = col_kii;
-  m_generationLength_ii = generationLength_kii;
-  m_world_prob = world_prob;
-  m_tongueLength_ii = tongueLength_kii;
-  m_starvation_ii = starvation_kii;
-  m_world_prob->coupleOrganism(this);
+IntelligentAnteater::IntelligentAnteater(const int row, const int column, const int generationLength, World *world, const int tongueLength, const int starvation) {
+  m_row = row;
+  m_column = column;
+  m_generationLength = generationLength;
+  m_world = world;
+  m_tongueLength= tongueLength;
+  m_starvation = starvation;
+  m_world->coupleOrganism(this);
 };
 
-bool IntelligentAnteater::feed(int direction_ii) {
-  vector<vector<int> > radar_veveii = radar(m_tongueLength_ii);
+bool IntelligentAnteater::feed(int direction) {
+  vector<vector<int> > radarVec = radar(m_tongueLength);
   vector<int> valid_veii;
-  for (int direction_ii = 0; direction_ii < radar_veveii.size(); direction_ii++) {
-    if (radar_veveii.at(direction_ii).size() == m_tongueLength_ii) {
-      if (count(radar_veveii.at(direction_ii).begin(), radar_veveii.at(direction_ii).end(), ANTEATER) == 0) {
-        if (count(radar_veveii.at(direction_ii).begin(), radar_veveii.at(direction_ii).end(), ANT)) {
-          valid_veii.push_back(direction_ii);
-        };
-      };
-    };
-  };
-  direction_ii = chooseDirection(valid_veii);
-  if (direction_ii >= 0 && direction_ii < DIRECTIONS_QTY_ii) {
-    return Anteater::feed(direction_ii);
-  } else {
-    m_hunger_ii++;
+  for (int direction = 0; direction < radarVec.size(); direction++) {
+    if (radarVec.at(direction).size() == m_tongueLength) {
+      if (count(radarVec.at(direction).begin(), radarVec.at(direction).end(), ANTEATER) == 0) {
+        if (count(radarVec.at(direction).begin(), radarVec.at(direction).end(), ANT)) {
+          valid_veii.push_back(direction);
+        }
+      }
+    }
+  }
+  direction = chooseDirection(valid_veii);
+  if (direction >= 0 && direction < DIRECTIONS_QTY) {
+    return Anteater::feed(direction);
+  } 
+  else {
+    m_hunger++;
     return 0;
-  };
-};
+  }
+}
 
 IntelligentAnteater::~IntelligentAnteater() {  };
 

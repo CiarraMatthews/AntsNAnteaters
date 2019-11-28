@@ -8,12 +8,12 @@ class IntelligentAnteater : public Anteater {
   public:
     // constructor:
     IntelligentAnteater();
-    IntelligentAnteater(const int row_kii, const int col_kii, const int generationLength_kii, World *world_prob, const int tongueLength_kii, const int starvation_kii);
+    IntelligentAnteater(const int row, const int column, const int generationLength, World *world, const int tongueLength, const int starvation);
     // mutator:
-    bool feed(int direction_ii) override;
+    bool feed(int direction) override;
     // accessor:
-    identity is() const override { return ANTEATER; };
-    int intelligence() const override { return 1; };
+    identity is() const override { return ANTEATER; }
+    int intelligence() const override { return 1; }
     // destructor:
     ~IntelligentAnteater();
 };
